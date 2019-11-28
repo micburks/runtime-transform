@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    ["babel-plugin-transform-cup-globals", {target: "browser"}],
+    ["babel-plugin-transform-prune-unused-imports", {falsyExpressions: ['__NODE__']}],
+    "./babel-plugin-rewrite-npm-imports.cjs",
+  ],
+  "presets": [
+    "@babel/preset-react"
+  ]
+}
