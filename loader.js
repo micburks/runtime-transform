@@ -4,6 +4,7 @@ import Module from 'module';
 import process from 'process';
 import { URL, pathToFileURL } from 'url';
 import babel from '@babel/core';
+import shared from './shared.js';
 
 const relativeRegex = /^\.{0,2}[/]/;
 const builtins = new Set(Module.builtinModules);
@@ -14,6 +15,10 @@ export async function resolve(
   parentModuleURL = baseURL,
   defaultResolver
 ) {
+  console.log('loader', shared.value);
+  shared.add();
+  console.log('after loader', shared.value);
+
   if (builtins.has(specifier)) {
     return {
       url: specifier,

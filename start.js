@@ -4,8 +4,12 @@ import {createReadStream, promises as fs} from 'fs';
 import http from 'http';
 import path from 'path';
 import babel from '@babel/core';
+import shared from './shared.js';
 
 const server = http.createServer(async (req, res) => {
+  console.log('server', shared.value);
+  shared.add();
+  console.log('after server', shared.value);
   try {
     if (req.url === '/') {
       const {default: render} = await import('./src/main.js');
