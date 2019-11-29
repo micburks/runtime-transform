@@ -1,7 +1,7 @@
 {
-  "name": "fusion-loader",
+  "name": "runtime-transform",
   "version": "0.0.0",
-  "description": "Bundle-less Fusion",
+  "description": "Bundle-less transforms",
   "main": "index.js",
   "type": "module",
   "scripts": {
