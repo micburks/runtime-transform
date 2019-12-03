@@ -2,20 +2,21 @@
   "name": "runtime-transform",
   "version": "0.0.0",
   "description": "Bundle-less transforms",
-  "main": "index.js",
   "type": "module",
+  "main": "index.js",
+  "exports": "index.js",
   "scripts": {
     "start": "./start.js"
   },
-  "keywords": [],
-  "author": "",
   "license": "MIT",
   "engines": {
-    "node": "13.2.0"
+    "node": ">=13.2.0"
   },
   "dependencies": {
     "@babel/core": "^7.7.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
+    "babel-plugin-transform-cjs-dew": "^1.0.2",
     "babel-plugin-transform-cup-globals": "^1.0.2",
     "babel-plugin-transform-prune-unused-imports": "^1.0.0",
     "react": "^16.12.0",

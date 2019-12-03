@@ -8,8 +8,11 @@ const plugin = {
   visitor: {
     ImportDeclaration(path) {
       const pkg = path.node.source.value;
-      if (!/^\./.test(pkg) && !builtins.has(pkg)) {
-        path.node.source.value = `https://dev.jspm.io/${pkg}`;
+      if (builtins.has(pkg)) {
+        return;
+      }
+      if (!pkg.startsWith('.')) {
+        path.node.source.value = `/dew/${pkg}`;
       }
     }
   }

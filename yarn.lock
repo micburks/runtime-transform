@@ -93,10 +93,17 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.7.4":
+"@babel/parser@^7.1.0", "@babel/parser@^7.7.4":
   version "7.7.4"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.7.4.tgz#75ab2d7110c2cf2fa949959afb05fa346d2231bb"
   integrity sha512-jIwvLO0zCL+O/LmEJQjWA75MQTWwx3c3u2JOTDK5D3/9egrWRRA0/0hk9XXywYnXZVVpzrBYeIQTmhwUaePI9g==
+
+"@babel/plugin-syntax-dynamic-import@^7.7.4":
+  version "7.7.4"
+  resolved "https://unpm.uberinternal.com/@babel%2fplugin-syntax-dynamic-import/-/plugin-syntax-dynamic-import-7.7.4.tgz#29ca3b4415abfe4a5ec381e903862ad1a54c3aec"
+  integrity sha1-Kco7RBWr/kpew4HpA4Yq0aVMOuw=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
 
 "@babel/plugin-syntax-jsx@^7.7.4":
   version "7.7.4"
@@ -187,6 +194,13 @@ ansi-styles@^3.2.1:
   integrity sha512-VT0ZI6kZRdTh8YyJw3SMbYm/u+NqfsAxEpWO0Pf9sq8/e94WxxOpPKx9FR1FlyCtOVDNOQ+8ntlqFxiRc+r5qA==
   dependencies:
     color-convert "^1.9.0"
+
+babel-plugin-transform-cjs-dew@^1.0.2:
+  version "1.0.2"
+  resolved "https://unpm.uberinternal.com/babel-plugin-transform-cjs-dew/-/babel-plugin-transform-cjs-dew-1.0.2.tgz#bed8d243a8319a39a2c57b0952134ee150a548b8"
+  integrity sha1-vtjSQ6gxmjmixXsJUhNO4VClSLg=
+  dependencies:
+    "@babel/parser" "^7.1.0"
 
 babel-plugin-transform-cup-globals@^1.0.2:
   version "1.0.2"
