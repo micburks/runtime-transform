@@ -15,10 +15,16 @@
   "dependencies": {
     "@babel/core": "^7.7.4",
     "@babel/plugin-syntax-dynamic-import": "^7.7.4",
+    "@babel/plugin-transform-flow-strip-types": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
+    "babel-plugin-proposal-class-properties": "npm:@rtsao/plugin-proposal-class-properties@7.0.1-patch.1",
     "babel-plugin-transform-cjs-dew": "^1.0.2",
     "babel-plugin-transform-cup-globals": "^1.0.2",
     "babel-plugin-transform-prune-unused-imports": "^1.0.0",
+    "fusion-cli": "^2.5.0",
+    "fusion-core": "^2.0.8",
+    "fusion-plugin-react-helmet-async": "^2.1.4",
+    "fusion-react": "^3.1.8",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   }

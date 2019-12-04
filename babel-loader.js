@@ -16,12 +16,28 @@ const require = createRequire(import.meta.url);
 const blackList = [
   path.resolve('./.babel-loader.config.js')
 ];
+const whiteList = {
+  assert: require.resolve('./node_modules/assert'),
+  process: require.resolve('./node_modules/process'),
+  buffer: require.resolve('./node_modules/buffer'),
+  util: require.resolve('./node_modules/util'),
+};
 
 export async function resolve(
   specifier,
   parentModuleURL = baseURL,
   defaultResolver
 ) {
+  if (specifier in loaderConfig.alias) {
+    specifier = loaderConfig.alias[specifier]; 
+    if (specifier === null) {
+      return {
+        url: new URL(require.resolve('./null.js'), parentModuleURL).href,
+        format: 'module',
+      };
+    }
+  }
+
   if (builtins.has(specifier)) {
     return {
       url: specifier,
@@ -40,6 +56,9 @@ export async function resolve(
     // node_modules
     return defaultResolver(specifier, parentModuleURL);
   } else {
+    if (!specifier.endsWith('.js')) {
+      specifier += '.js';
+    }
     // relative
     const newPath = await babelLoader(
       new URL(specifier, parentModuleURL),
@@ -54,12 +73,18 @@ export async function resolve(
 
 export async function resolveNodeModules(nodeModule) {
   let hash;
-  const url = require.resolve(nodeModule);
+  if (nodeModule in loaderConfig.alias) {
+    return babelLoader(loaderConfig.alias[nodeModule], 'browser');
+  }
+  let url = require.resolve(nodeModule);
+  if (nodeModule in whiteList) {
+    url = whiteList[nodeModule];
+  }
   try {
     const {stdout: md5Hash} = await run(`md5sum ${url}`);
     hash = md5Hash.slice(0, 6);
   } catch (e) {
-    console.log(e);
+    console.error(e);
     return url;
   }
   const newPath = getFileName(url, 'nm', hash);
@@ -82,6 +107,8 @@ export async function resolveNodeModules(nodeModule) {
           parent: nodeModule,
           parentFilePath: url,
         }],
+        '@babel/plugin-transform-flow-strip-types',
+        'babel-plugin-proposal-class-properties',
       ],
       presets: [
         '@babel/preset-react'
@@ -114,7 +141,10 @@ export async function babelLoader(url, env) {
       const newPath = getFileName(url, config.name, hash);
       const transformed = babel.transform(
         contents,
-        {configFile: config.configFile}
+        {
+          configFile: config.configFile,
+          filename: url,
+        }
       );
       await fs.writeFile(newPath, transformed.code);
       if (env === config.name) {
@@ -134,7 +164,10 @@ export async function babelLoader(url, env) {
     const contents = await fs.readFile(url, 'utf-8');
     const transformed = babel.transform(
       contents,
-      {configFile: config.configFile}
+      {
+        configFile: config.configFile,
+        filename: url,
+      }
     );
     await fs.writeFile(newPath, transformed.code);
     return newPath;

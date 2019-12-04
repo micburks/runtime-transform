@@ -1,7 +1,5 @@
 
-const {dirname, join, resolve} = require('path');
-const Module = require('module');
-const builtins = new Set(Module.builtinModules);
+const {dirname, join} = require('path');
 
 module.exports = (config, options) => {
   return {

@@ -2,7 +2,10 @@
   "plugins": [
     ["babel-plugin-transform-cup-globals", {target: "browser"}],
     ["babel-plugin-transform-prune-unused-imports", {falsyExpressions: ['__NODE__']}],
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-transform-flow-strip-types",
     "./babel-plugin-rewrite-npm-imports.cjs",
+    "babel-plugin-proposal-class-properties",
   ],
   "presets": [
     "@babel/preset-react"

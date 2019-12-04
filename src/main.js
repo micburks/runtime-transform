@@ -1,17 +1,15 @@
 
 import React from 'react';
-import browserRender from './browser-render.js';
-import serverRender from './server-render.js';
-import App from './app.js';
+import FusionApp from 'fusion-react';
+import noBuild from './no-build.js';
+import Root from './app.js';
+
+console.log('http://localhost:3000');
 
 export default function () {
+  const app = new FusionApp(<Root />);
   if (__NODE__) {
-    console.log('node good');
-    return serverRender(<App />);
+    app.middleware(noBuild);
   }
-}
-
-if (__BROWSER__) {
-  console.log('browser good');
-  browserRender(<App />);
+  return app;
 }
