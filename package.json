@@ -1,10 +1,12 @@
 {
-  "name": "runtime-transform",
+  "name": "@micburks/babel-loader",
   "version": "0.0.0",
   "description": "Bundle-less transforms",
   "type": "module",
-  "main": "index.js",
-  "exports": "index.js",
+  "main": "./loader.js",
+  "exports": {
+    "./resolve": "./resolve.js"
+  },
   "scripts": {
     "start": "./start.js"
   },
@@ -14,6 +16,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.7.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.7.4",
     "@babel/plugin-syntax-dynamic-import": "^7.7.4",
     "@babel/plugin-transform-flow-strip-types": "^7.7.4",
     "@babel/preset-react": "^7.7.4",

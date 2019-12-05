@@ -54,10 +54,26 @@ export async function resolve(
 
   if (!relativeRegex.test(specifier)) {
     // node_modules
+    if (
+      specifier.startsWith('uuid')
+      || specifier.startsWith('lodash')
+      || specifier.startsWith('@uber/device-identity')
+    ) {
+      console.log('got one', specifier);
+      specifier = specifier.endsWith('.js') ? specifier : `${specifier}.js`;
+    }
     return defaultResolver(specifier, parentModuleURL);
   } else {
     if (!specifier.endsWith('.js')) {
-      specifier += '.js';
+      const exists = existsSync(
+        new URL(specifier + '.js', parentModuleURL).pathname
+      );
+      if (exists) {
+        specifier += '.js';
+      } else {
+        specifier += '/index.js';
+        console.log('gotta try index.js')
+      }
     }
     // relative
     const newPath = await babelLoader(

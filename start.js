@@ -1,9 +1,9 @@
-#!/usr/bin/env node --loader ./babel-loader.js
+#!/usr/bin/env node --loader ./loader.js
 
 import {promises as fs} from 'fs';
 import http from 'http';
 import path from 'path';
-import {babelLoader, resolveNodeModules} from 'raw:./babel-loader.js';
+import {babelLoader, resolveNodeModules} from 'raw:./loader.js';
 
 const server = http.createServer(async (req, res) => {
   try {

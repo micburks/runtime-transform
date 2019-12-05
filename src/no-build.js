@@ -3,7 +3,7 @@
 import {promises as fs} from 'fs';
 import http from 'http';
 import path from 'path';
-import {babelLoader, resolveNodeModules} from 'raw:../babel-loader.js';
+import {babelLoader, resolveNodeModules} from 'raw:@micburks/babel-loader';
 import {html} from 'fusion-core';
 /*
 import fusionCore from 'fusion-core';

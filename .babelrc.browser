@@ -6,6 +6,7 @@
     "@babel/plugin-transform-flow-strip-types",
     "./babel-plugin-rewrite-npm-imports.cjs",
     "babel-plugin-proposal-class-properties",
+    "@babel/plugin-proposal-optional-chaining",
   ],
   "presets": [
     "@babel/preset-react"

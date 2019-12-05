@@ -1,4 +1,4 @@
-#!/usr/bin/env node --loader ./babel-loader.js
+#!/usr/bin/env node --loader @micburks/babel-loader
 /** Copyright (c) 2018 Uber Technologies, Inc.
  *
  * This source code is licensed under the MIT license found in the
@@ -12,9 +12,12 @@
 import fs from 'fs';
 import path from 'path';
 import cp from 'child_process';
+import {createRequire} from 'module';
+
+const require = createRequire(import.meta.url);
 
 const dir = process.cwd();
-const entry = path.resolve('./fusion-cli/entries/server-entry.js');
+const entry = require.resolve('../entries/server-entry.js');
 
 import(entry)
   .then(({start}) => {
