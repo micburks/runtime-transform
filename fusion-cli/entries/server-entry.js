@@ -14,7 +14,7 @@ import sourceMapSupport from 'source-map-support';
 sourceMapSupport.install();
 
 // $FlowFixMe
-import '__SECRET_I18N_MANIFEST_INSTRUMENTATION_LOADER__!'; // eslint-disable-line
+// import '__SECRET_I18N_MANIFEST_INSTRUMENTATION_LOADER__!'; // eslint-disable-line
 
 import http from 'http';
 
@@ -53,7 +53,7 @@ let AssetsPlugin;
 
 let server = null;
 const state = {serve: null};
-const initialize = import('__FUSION_ENTRY_PATH__')
+const initialize = import('../../src/main.js')
   .then(({default: main}) => {
     return main ? main : () => {
       throw new Error('App should export a function');

@@ -3,7 +3,7 @@
 import {promises as fs} from 'fs';
 import http from 'http';
 import path from 'path';
-import {babelLoader, resolveNodeModules} from 'raw:@micburks/babel-loader';
+import {babelLoader, resolveNodeModules} from 'raw:../loader.js';
 import {html} from 'fusion-core';
 /*
 import fusionCore from 'fusion-core';
@@ -14,7 +14,7 @@ export default async function (ctx, next) {
   if (ctx.element) {
     ctx.template.body.push(
       html`
-        <script type="module" src="src/main.js"></script>
+        <script type="module" src="fusion-cli/entries/client-entry.js"></script>
       `
     );
   }

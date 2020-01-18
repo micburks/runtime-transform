@@ -4,8 +4,8 @@
     ["babel-plugin-transform-prune-unused-imports", {falsyExpressions: ['__BROWSER__']}],
     "@babel/plugin-syntax-dynamic-import",
     "@babel/plugin-transform-flow-strip-types",
-    "babel-plugin-proposal-class-properties",
     "@babel/plugin-proposal-optional-chaining",
+    "babel-plugin-proposal-class-properties",
   ],
   "presets": [
     "@babel/preset-react"

@@ -9,8 +9,8 @@ const loaderConfig = {
   alias: {
     '__FUSION_ENTRY_PATH__!': './src/main.js',
     '__FUSION_ENTRY_PATH__': './src/main.js',
-    'fusion-react': './fusion-react/src/index.js',
-    'fusion-core': './fusion-core/src/index.js',
+    'fusion-react': require.resolve('./fusion-react/src/index.js'),
+    'fusion-core': require.resolve('./fusion-core/src/index.js'),
   }
 };
 

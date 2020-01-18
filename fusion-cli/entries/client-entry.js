@@ -11,9 +11,9 @@
 
 import BaseApp, {createPlugin, RoutePrefixToken} from 'fusion-core';
 
-function reload() {
+async function reload() {
   // $FlowFixMe
-  const main = require('__FUSION_ENTRY_PATH__'); // eslint-disable-line
+  const main = await import('../../src/main.js'); // eslint-disable-line
   const initialize = main.default || main;
   Promise.resolve(initialize()).then(app => {
     if (!(app instanceof BaseApp)) {
@@ -35,6 +35,8 @@ function reload() {
 reload();
 
 // $FlowFixMe
+/*
 if (module.hot) {
   module.hot.accept('__FUSION_ENTRY_PATH__', reload);
 }
+*/

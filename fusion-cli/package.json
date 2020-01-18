@@ -8,9 +8,6 @@
     "url": "https://github.com/fusionjs/fusionjs"
   },
   "type": "module",
-  "bin": {
-    "fusion": "bin/cli.js"
-  },
   "files": [
     "bin",
     "build",

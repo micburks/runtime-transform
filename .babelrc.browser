@@ -4,9 +4,9 @@
     ["babel-plugin-transform-prune-unused-imports", {falsyExpressions: ['__NODE__']}],
     "@babel/plugin-syntax-dynamic-import",
     "@babel/plugin-transform-flow-strip-types",
-    "./babel-plugin-rewrite-npm-imports.cjs",
-    "babel-plugin-proposal-class-properties",
     "@babel/plugin-proposal-optional-chaining",
+    "babel-plugin-proposal-class-properties",
+    "./babel-plugin-rewrite-npm-imports.cjs",
   ],
   "presets": [
     "@babel/preset-react"

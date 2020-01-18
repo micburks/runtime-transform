@@ -2,10 +2,13 @@
   "name": "@micburks/babel-loader",
   "version": "0.0.0",
   "description": "Bundle-less transforms",
-  "type": "module",
   "main": "./loader.js",
+  "type": "module",
   "exports": {
     "./resolve": "./resolve.js"
+  },
+  "bin": {
+    "babel-run": "./fusion-start.js"
   },
   "scripts": {
     "start": "./start.js"
@@ -20,6 +23,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.7.4",
     "@babel/plugin-transform-flow-strip-types": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
+    "@rtsao/plugin-proposal-class-properties": "^7.0.1-patch.1",
     "babel-plugin-proposal-class-properties": "npm:@rtsao/plugin-proposal-class-properties@7.0.1-patch.1",
     "babel-plugin-transform-cjs-dew": "^1.0.2",
     "babel-plugin-transform-cup-globals": "^1.0.2",

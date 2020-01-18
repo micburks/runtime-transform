@@ -1,4 +1,4 @@
-#!/usr/bin/env node --loader @micburks/babel-loader
+#!/usr/bin/env node --loader ./loader.js
 /** Copyright (c) 2018 Uber Technologies, Inc.
  *
  * This source code is licensed under the MIT license found in the
@@ -21,6 +21,7 @@ const entry = require.resolve('../entries/server-entry.js');
 
 import(entry)
   .then(({start}) => {
+    console.log('http://localhost:3000');
     return start({dir, port: 3000}); // handle server bootstrap errors (e.g. port already in use)
   }).catch((e) => {
     console.error(e);

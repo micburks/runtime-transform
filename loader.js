@@ -14,7 +14,7 @@ const baseURL = pathToFileURL(process.cwd()).href;
 const run = promisify(exec);
 const require = createRequire(import.meta.url);
 const blackList = [
-  path.resolve('./.babel-loader.config.js')
+  require.resolve('./.babel-loader.config.js')
 ];
 const whiteList = {
   assert: require.resolve('./node_modules/assert'),
@@ -52,18 +52,7 @@ export async function resolve(
     );
   }
 
-  if (!relativeRegex.test(specifier)) {
-    // node_modules
-    if (
-      specifier.startsWith('uuid')
-      || specifier.startsWith('lodash')
-      || specifier.startsWith('@uber/device-identity')
-    ) {
-      console.log('got one', specifier);
-      specifier = specifier.endsWith('.js') ? specifier : `${specifier}.js`;
-    }
-    return defaultResolver(specifier, parentModuleURL);
-  } else {
+  if (relativeRegex.test(specifier)) {
     if (!specifier.endsWith('.js')) {
       const exists = existsSync(
         new URL(specifier + '.js', parentModuleURL).pathname
@@ -72,7 +61,7 @@ export async function resolve(
         specifier += '.js';
       } else {
         specifier += '/index.js';
-        console.log('gotta try index.js')
+        // console.log('gotta try index.js')
       }
     }
     // relative
@@ -84,6 +73,17 @@ export async function resolve(
       url: new URL(newPath, parentModuleURL).href,
       format: 'module'
     };
+  } else {
+    // node_modules
+    if (
+      specifier.startsWith('uuid')
+      || specifier.startsWith('lodash')
+      || specifier.startsWith('@uber/device-identity')
+    ) {
+      // console.log('got one', specifier);
+      specifier = specifier.endsWith('.js') ? specifier : `${specifier}.js`;
+    }
+    return defaultResolver(specifier, parentModuleURL);
   }
 }
 
@@ -115,7 +115,7 @@ export async function resolveNodeModules(nodeModule) {
       plugins: [
         ['babel-plugin-transform-cjs-dew', {
           define: {
-            'process.env.NODE_ENV': '"development"'
+            'process.env.NODE_ENV': '"production"'
           },
         }],
         '@babel/plugin-syntax-dynamic-import',

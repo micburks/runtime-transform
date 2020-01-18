@@ -5,6 +5,7 @@ const require = createRequire(import.meta.url);
 
 export default {
   cache: true,
+  runtime: 'server',
   configs: [
     { name: 'server', configFile: require.resolve('./.babelrc.server') },
     { name: 'browser', configFile: require.resolve('./.babelrc.browser') },
